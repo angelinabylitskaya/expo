@@ -46,7 +46,7 @@ runs:
 
         while [ $RETRIES -lt $MAX_RETRIES ]; do
           set +e
-          BUILD_ID=$(eas build -p $PLATFORM --profile $EAS_BUILD_PROFILE --message "$MESSAGE" --non-interactive --json --no-wait | jq -r ".[0].id")
+          BUILD_ID=$(eas build -p $PLATFORM --profile $EAS_BUILD_PROFILE --message "$MESSAGE" --non-interactive --json --no-wait --build-logger-level=debug | jq -r ".[0].id")
           BUILD_STATUS=$?
           set -e
           if [ $BUILD_STATUS -eq 0 ] && [ -n "$BUILD_ID" ]; then
